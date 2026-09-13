@@ -1,66 +1,62 @@
-!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head><
+    <title>Todo List</title>
+</head>
 
 <body>
-    <!DOCTYPE html>
-    <html>
 
-    <head>
-        <title>Todo List</title>
-    </head>
+```
+<h1>Todo List</h1>
 
-    <body>
+<input
+    type="text"
+    id="taskInput"
+    placeholder="Add a task"
+/>
 
-        <h1>Todo List</h1>
+<button onclick="addTask()">Add Task</button>
 
-        <input type="text" id="taskInput" placeholder="Add a task" />
+<ul id="taskList"></ul>
 
-        <button onclick="addTask()">Add task</button>
+<script>
+    function getTaskText() {
+        const input = document.getElementById('taskInput');
+        const text = input.value.trim();
 
-        <ul id="taskList">
-            Your tasks go here...
-        </ul>
+        console.log("The input value is: " + input.value);
 
-        <script>
-            function getTaskText() {
-                const input = document.getElementById('taskInput');
-                const text = input.value.trim();
+        return text;
+    }
 
-                console.log("The input value is: " + input.value);
+    function addTask() {
+        const taskText = getTaskText();
 
-                return text;
-            }
+        if (taskText === "") {
+            alert("Please enter a task.");
+            return;
+        }
 
-            function addTask() {
-                const taskText = getTaskText();
+        addTaskItem(taskText);
 
-                if (taskText === "") {
-                    return;
-                }
+        document.getElementById('taskInput').value = "";
+    }
 
-                addTaskItem(taskText);
+    function addTaskItem(taskText) {
+        const li = document.createElement('li');
 
-                document.getElementById('taskInput').value = "";
-            }
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
 
-            function addTaskItem(taskText) {
-                const li = document.createElement('li');
+        li.appendChild(taskSpan);
 
-                const taskSpan = document.createElement('span');
-                taskSpan.textContent = taskText;
+        document.getElementById('taskList').appendChild(li);
+    }
+</script>
+```
 
-                li.appendChild(taskSpan);
-
-                document.getElementById('taskList').appendChild(li);
-            }
-        </script>
-
-    </body>
-
-    </html>
+</body>
+</html>
