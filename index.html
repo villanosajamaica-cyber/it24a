@@ -62,6 +62,10 @@
         //call createEditButton function
         const editBtn = createEditButton(li, taskSpan);
         li.appendChild(editBtn);
+
+        //call createDeleteButton function
+        const deleteBtn = createDeleteButton(li, taskSpan);
+        li.appendChild(deleteBtn);
     }
 
     function createDoneButton(li) {
@@ -82,15 +86,15 @@
             return doneBtn;
         }
 
-        function createEditButton(li) {
-                const editBtn = document.createElement("button");
+    function createEditButton(li) {
+            const editBtn = document.createElement("button");
                 editBtn.textContent = "Edit";
                 editBtn.style.marginLeft = "8px";
                 editBtn.onclick = () => handleEditClick(li);
                 return editBtn;
             }
 
-            function handleEditClick(li) {
+        function handleEditClick(li) {
                 const currentText = li.firstChild.textContent.trim();
                 const newText = prompt("Edit your task:", currentText);
 
@@ -102,6 +106,19 @@
                 }
 
             }
+
+        function createDeleteButton(li) {
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "Delete";
+                    deleteBtn.style.marginLeft = "8px";
+                    deleteBtn.onclick = () => handleDeleteClick(li);
+                    return deleteBtn;
+                }
+
+                function handleDeleteClick(li) {
+                    li.remove();
+                    alert("Task Deleted");
+                }
 
 
 </script>
