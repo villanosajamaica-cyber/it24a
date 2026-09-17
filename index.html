@@ -58,6 +58,10 @@
         //call createDoneButton function
         const donBtn = createDoneButton(li);
         li.appendChild(donBtn);
+
+        //call createEditButton function
+        const editBtn = createEditButton(li, taskSpan);
+        li.appendChild(editBtn);
     }
 
     function createDoneButton(li) {
@@ -77,6 +81,27 @@
             }
             return doneBtn;
         }
+
+        function createEditButton(li) {
+                const editBtn = document.createElement("button");
+                editBtn.textContent = "Edit";
+                editBtn.style.marginLeft = "8px";
+                editBtn.onclick = () => handleEditClick(li);
+                return editBtn;
+            }
+
+            function handleEditClick(li) {
+                const currentText = li.firstChild.textContent.trim();
+                const newText = prompt("Edit your task:", currentText);
+
+                if (newText !== null && newText.trim() !== "") {
+                    li.firstChild.textContent = newText.trim();
+                    alert("Updated Task");
+                } else {
+                    alert("No Changes Made");
+                }
+
+            }
 
 
 </script>
